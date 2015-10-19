@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace AsyncLab
 {
     /// <summary>
-    /// v2
+    /// v3
     ///    Stopwatch sw = new Stopwatch();
     ///        sw.Start();
     ///        using (var db = new CorexERP_DEVEntities())
