@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="UnderBingoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'UnderBingo.dbo.BINSIGNB' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="BINSIGNB">
+          <Key>
+            <PropertyRef Name="SIGNID" />
+            <PropertyRef Name="KINDNO" />
+          </Key>
+          <Property Name="SIGNID" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="KINDNO" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="BONUSMONEY2" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="BONUSMONEY3" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="BONUSMONEY4" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="BONUSMONEYO" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="SIGN2" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="SIGN3" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="SIGN4" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="SIGNO" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="SIGNMONEY2" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="SIGNMONEY3" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="SIGNMONEY4" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="SIGNMONEYO" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="BIN2" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="BIN3" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="BIN4" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="BINO" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="BINNUM2" Type="varchar" MaxLength="200" />
+          <Property Name="BINNUM3" Type="varchar" MaxLength="200" />
+          <Property Name="BINNUM4" Type="varchar" MaxLength="200" />
+          <Property Name="BINNUMO" Type="varchar" MaxLength="200" />
+          <Property Name="SIGNRATE2" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="SIGNRATE3" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="SIGNRATE4" Type="decimal" Precision="8" Scale="2" />
+        </EntityType>
+        <EntityType Name="BINSIGND">
+          <Key>
+            <PropertyRef Name="SIGNID" />
+            <PropertyRef Name="ROWSEQ" />
+            <PropertyRef Name="COLSEQ" />
+          </Key>
+          <Property Name="SIGNID" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="ROWSEQ" Type="int" Nullable="false" />
+          <Property Name="COLSEQ" Type="int" Nullable="false" />
+          <Property Name="NUM" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="ISBINGO" Type="varchar" MaxLength="1" />
+          <Property Name="SIGNRATEO" Type="decimal" Precision="8" Scale="2" />
+        </EntityType>
+        <EntityType Name="BINSIGNM">
+          <Key>
+            <PropertyRef Name="SIGNID" />
+          </Key>
+          <Property Name="SIGNID" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="SID" Type="varchar" MaxLength="4" />
+          <Property Name="SIGNKIND" Type="varchar" MaxLength="4" />
+          <Property Name="KINDNOS" Type="varchar" MaxLength="100" />
+          <Property Name="STARTYPE" Type="varchar" MaxLength="20" />
+          <Property Name="SIGNUSER" Type="varchar" MaxLength="36" />
+          <Property Name="BINTIME" Type="datetime" />
+          <Property Name="CRT_USER" Type="varchar" MaxLength="20" />
+          <Property Name="CRT_TIME" Type="datetime" />
+          <Property Name="REMARK" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK_BINSIGNB_RELATIONS_BINSIGNM">
+          <End Role="BINSIGNM" Type="Self.BINSIGNM" Multiplicity="1" />
+          <End Role="BINSIGNB" Type="Self.BINSIGNB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BINSIGNM">
+              <PropertyRef Name="SIGNID" />
+            </Principal>
+            <Dependent Role="BINSIGNB">
+              <PropertyRef Name="SIGNID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BINSIGND_RELATIONS_BINSIGNM">
+          <End Role="BINSIGNM" Type="Self.BINSIGNM" Multiplicity="1" />
+          <End Role="BINSIGND" Type="Self.BINSIGND" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BINSIGNM">
+              <PropertyRef Name="SIGNID" />
+            </Principal>
+            <Dependent Role="BINSIGND">
+              <PropertyRef Name="SIGNID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UnderBingoModelStoreContainer">
+          <EntitySet Name="BINSIGND" EntityType="Self.BINSIGND" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BINSIGNM" EntityType="Self.BINSIGNM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BINSIGNB" EntityType="Self.BINSIGNB" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [BINSIGNB].[SIGNID] AS [SIGNID], 
+    [BINSIGNB].[KINDNO] AS [KINDNO], 
+    [BINSIGNB].[BONUSMONEY2] AS [BONUSMONEY2], 
+    [BINSIGNB].[BONUSMONEY3] AS [BONUSMONEY3], 
+    [BINSIGNB].[BONUSMONEY4] AS [BONUSMONEY4], 
+    [BINSIGNB].[BONUSMONEYO] AS [BONUSMONEYO], 
+    [BINSIGNB].[SIGN2] AS [SIGN2], 
+    [BINSIGNB].[SIGN3] AS [SIGN3], 
+    [BINSIGNB].[SIGN4] AS [SIGN4], 
+    [BINSIGNB].[SIGNO] AS [SIGNO], 
+    [BINSIGNB].[SIGNMONEY2] AS [SIGNMONEY2], 
+    [BINSIGNB].[SIGNMONEY3] AS [SIGNMONEY3], 
+    [BINSIGNB].[SIGNMONEY4] AS [SIGNMONEY4], 
+    [BINSIGNB].[SIGNMONEYO] AS [SIGNMONEYO], 
+    [BINSIGNB].[BIN2] AS [BIN2], 
+    [BINSIGNB].[BIN3] AS [BIN3], 
+    [BINSIGNB].[BIN4] AS [BIN4], 
+    [BINSIGNB].[BINO] AS [BINO], 
+    [BINSIGNB].[BINNUM2] AS [BINNUM2], 
+    [BINSIGNB].[BINNUM3] AS [BINNUM3], 
+    [BINSIGNB].[BINNUM4] AS [BINNUM4], 
+    [BINSIGNB].[BINNUMO] AS [BINNUMO], 
+    [BINSIGNB].[SIGNRATE2] AS [SIGNRATE2], 
+    [BINSIGNB].[SIGNRATE3] AS [SIGNRATE3], 
+    [BINSIGNB].[SIGNRATE4] AS [SIGNRATE4]
+    FROM [dbo].[BINSIGNB] AS [BINSIGNB]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_BINSIGNB_RELATIONS_BINSIGNM" Association="Self.FK_BINSIGNB_RELATIONS_BINSIGNM">
+            <End Role="BINSIGNM" EntitySet="BINSIGNM" />
+            <End Role="BINSIGNB" EntitySet="BINSIGNB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BINSIGND_RELATIONS_BINSIGNM" Association="Self.FK_BINSIGND_RELATIONS_BINSIGNM">
+            <End Role="BINSIGNM" EntitySet="BINSIGNM" />
+            <End Role="BINSIGND" EntitySet="BINSIGND" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UnderBingoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BINSIGND">
+          <Key>
+            <PropertyRef Name="SIGNID" />
+            <PropertyRef Name="ROWSEQ" />
+            <PropertyRef Name="COLSEQ" />
+          </Key>
+          <Property Name="SIGNID" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ROWSEQ" Type="Int32" Nullable="false" />
+          <Property Name="COLSEQ" Type="Int32" Nullable="false" />
+          <Property Name="NUM" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ISBINGO" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="SIGNRATEO" Type="Decimal" Precision="8" Scale="2" />
+          <NavigationProperty Name="BINSIGNM" Relationship="Self.FK_BINSIGND_RELATIONS_BINSIGNM" FromRole="BINSIGND" ToRole="BINSIGNM" />
+        </EntityType>
+        <EntityType Name="BINSIGNM">
+          <Key>
+            <PropertyRef Name="SIGNID" />
+          </Key>
+          <Property Name="SIGNID" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SID" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="SIGNKIND" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="KINDNOS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="STARTYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SIGNUSER" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="BINTIME" Type="DateTime" Precision="3" />
+          <Property Name="CRT_USER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CRT_TIME" Type="DateTime" Precision="3" />
+          <Property Name="REMARK" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BINSIGNDs" Relationship="Self.FK_BINSIGND_RELATIONS_BINSIGNM" FromRole="BINSIGNM" ToRole="BINSIGND" />
+          <NavigationProperty Name="BINSIGNBs" Relationship="Self.FK_BINSIGNB_RELATIONS_BINSIGNM" FromRole="BINSIGNM" ToRole="BINSIGNB" />
+        </EntityType>
+        <EntityType Name="BINSIGNB">
+          <Key>
+            <PropertyRef Name="SIGNID" />
+            <PropertyRef Name="KINDNO" />
+          </Key>
+          <Property Name="SIGNID" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="KINDNO" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BONUSMONEY2" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="BONUSMONEY3" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="BONUSMONEY4" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="BONUSMONEYO" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="SIGN2" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="SIGN3" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="SIGN4" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="SIGNO" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="SIGNMONEY2" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="SIGNMONEY3" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="SIGNMONEY4" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="SIGNMONEYO" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="BIN2" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="BIN3" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="BIN4" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="BINO" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="BINNUM2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="BINNUM3" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="BINNUM4" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="BINNUMO" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SIGNRATE2" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="SIGNRATE3" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="SIGNRATE4" Type="Decimal" Precision="8" Scale="2" />
+          <NavigationProperty Name="BINSIGNM" Relationship="Self.FK_BINSIGNB_RELATIONS_BINSIGNM" FromRole="BINSIGNB" ToRole="BINSIGNM" />
+        </EntityType>
+        <Association Name="FK_BINSIGND_RELATIONS_BINSIGNM">
+          <End Role="BINSIGNM" Type="Self.BINSIGNM" Multiplicity="1" />
+          <End Role="BINSIGND" Type="Self.BINSIGND" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BINSIGNM">
+              <PropertyRef Name="SIGNID" />
+            </Principal>
+            <Dependent Role="BINSIGND">
+              <PropertyRef Name="SIGNID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BINSIGNB_RELATIONS_BINSIGNM">
+          <End Role="BINSIGNM" Type="Self.BINSIGNM" Multiplicity="1" />
+          <End Role="BINSIGNB" Type="Self.BINSIGNB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BINSIGNM">
+              <PropertyRef Name="SIGNID" />
+            </Principal>
+            <Dependent Role="BINSIGNB">
+              <PropertyRef Name="SIGNID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UnderBingoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BINSIGNDs" EntityType="Self.BINSIGND" />
+          <EntitySet Name="BINSIGNMs" EntityType="Self.BINSIGNM" />
+          <EntitySet Name="BINSIGNBs" EntityType="Self.BINSIGNB" />
+          <AssociationSet Name="FK_BINSIGND_RELATIONS_BINSIGNM" Association="Self.FK_BINSIGND_RELATIONS_BINSIGNM">
+            <End Role="BINSIGNM" EntitySet="BINSIGNMs" />
+            <End Role="BINSIGND" EntitySet="BINSIGNDs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BINSIGNB_RELATIONS_BINSIGNM" Association="Self.FK_BINSIGNB_RELATIONS_BINSIGNM">
+            <End Role="BINSIGNM" EntitySet="BINSIGNMs" />
+            <End Role="BINSIGNB" EntitySet="BINSIGNBs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UnderBingoModelStoreContainer" CdmEntityContainer="UnderBingoEntities">
+          <EntitySetMapping Name="BINSIGNDs">
+            <EntityTypeMapping TypeName="UnderBingoModel.BINSIGND">
+              <MappingFragment StoreEntitySet="BINSIGND">
+                <ScalarProperty Name="SIGNID" ColumnName="SIGNID" />
+                <ScalarProperty Name="ROWSEQ" ColumnName="ROWSEQ" />
+                <ScalarProperty Name="COLSEQ" ColumnName="COLSEQ" />
+                <ScalarProperty Name="NUM" ColumnName="NUM" />
+                <ScalarProperty Name="ISBINGO" ColumnName="ISBINGO" />
+                <ScalarProperty Name="SIGNRATEO" ColumnName="SIGNRATEO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BINSIGNMs">
+            <EntityTypeMapping TypeName="UnderBingoModel.BINSIGNM">
+              <MappingFragment StoreEntitySet="BINSIGNM">
+                <ScalarProperty Name="SIGNID" ColumnName="SIGNID" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+                <ScalarProperty Name="SIGNKIND" ColumnName="SIGNKIND" />
+                <ScalarProperty Name="KINDNOS" ColumnName="KINDNOS" />
+                <ScalarProperty Name="STARTYPE" ColumnName="STARTYPE" />
+                <ScalarProperty Name="SIGNUSER" ColumnName="SIGNUSER" />
+                <ScalarProperty Name="BINTIME" ColumnName="BINTIME" />
+                <ScalarProperty Name="CRT_USER" ColumnName="CRT_USER" />
+                <ScalarProperty Name="CRT_TIME" ColumnName="CRT_TIME" />
+                <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BINSIGNBs">
+            <EntityTypeMapping TypeName="UnderBingoModel.BINSIGNB">
+              <MappingFragment StoreEntitySet="BINSIGNB">
+                <ScalarProperty Name="SIGNID" ColumnName="SIGNID" />
+                <ScalarProperty Name="KINDNO" ColumnName="KINDNO" />
+                <ScalarProperty Name="BONUSMONEY2" ColumnName="BONUSMONEY2" />
+                <ScalarProperty Name="BONUSMONEY3" ColumnName="BONUSMONEY3" />
+                <ScalarProperty Name="BONUSMONEY4" ColumnName="BONUSMONEY4" />
+                <ScalarProperty Name="BONUSMONEYO" ColumnName="BONUSMONEYO" />
+                <ScalarProperty Name="SIGN2" ColumnName="SIGN2" />
+                <ScalarProperty Name="SIGN3" ColumnName="SIGN3" />
+                <ScalarProperty Name="SIGN4" ColumnName="SIGN4" />
+                <ScalarProperty Name="SIGNO" ColumnName="SIGNO" />
+                <ScalarProperty Name="SIGNMONEY2" ColumnName="SIGNMONEY2" />
+                <ScalarProperty Name="SIGNMONEY3" ColumnName="SIGNMONEY3" />
+                <ScalarProperty Name="SIGNMONEY4" ColumnName="SIGNMONEY4" />
+                <ScalarProperty Name="SIGNMONEYO" ColumnName="SIGNMONEYO" />
+                <ScalarProperty Name="BIN2" ColumnName="BIN2" />
+                <ScalarProperty Name="BIN3" ColumnName="BIN3" />
+                <ScalarProperty Name="BIN4" ColumnName="BIN4" />
+                <ScalarProperty Name="BINO" ColumnName="BINO" />
+                <ScalarProperty Name="BINNUM2" ColumnName="BINNUM2" />
+                <ScalarProperty Name="BINNUM3" ColumnName="BINNUM3" />
+                <ScalarProperty Name="BINNUM4" ColumnName="BINNUM4" />
+                <ScalarProperty Name="BINNUMO" ColumnName="BINNUMO" />
+                <ScalarProperty Name="SIGNRATE2" ColumnName="SIGNRATE2" />
+                <ScalarProperty Name="SIGNRATE3" ColumnName="SIGNRATE3" />
+                <ScalarProperty Name="SIGNRATE4" ColumnName="SIGNRATE4" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

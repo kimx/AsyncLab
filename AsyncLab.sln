@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncLab", "AsyncLab\AsyncLab.csproj", "{F3B76AC3-9F29-444A-934C-B5B6691ECEDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncLab.WebApp", "AsyncLab.WebApp\AsyncLab.WebApp.csproj", "{D5503998-56E1-465C-8A06-86A39DB830FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,15 @@ Global
 		{F3B76AC3-9F29-444A-934C-B5B6691ECEDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3B76AC3-9F29-444A-934C-B5B6691ECEDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3B76AC3-9F29-444A-934C-B5B6691ECEDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5503998-56E1-465C-8A06-86A39DB830FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5503998-56E1-465C-8A06-86A39DB830FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5503998-56E1-465C-8A06-86A39DB830FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5503998-56E1-465C-8A06-86A39DB830FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E9CA9DF4-C9CE-40DE-9675-266F60B28D80}
 	EndGlobalSection
 EndGlobal
