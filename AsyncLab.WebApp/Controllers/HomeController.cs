@@ -12,9 +12,15 @@ namespace AsyncLab.WebApp.Controllers
     {
         static int _DelayAsyncCount = 0;
         static int _DelayCount = 0;
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            ViewBag.Message = $"_DelayAsyncCount : {_DelayAsyncCount}<br>_DelayCount : {_DelayCount}";
+            using (var db = new Models.UnderBingoEntities())
+            {
+                await Task.Delay(5000);
+                ViewBag.Title = "PRD";
+                var list = await db.BINSIGNDs.Take(300).ToListAsync();
+                ViewBag.Message = $"_DelayAsyncCount : {_DelayAsyncCount}<br>_DelayCount : {_DelayCount},List:{list.Count}";
+            }
             return View();
         }
 
@@ -32,12 +38,12 @@ namespace AsyncLab.WebApp.Controllers
             return View();
         }
 
-        int _count = 100;
+        int _count = 10000;
         public async Task<ActionResult> DelayAsync()
         {
             System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
             stopwatch.Start();
-         //   await Task.Delay(_delay);
+            //   await Task.Delay(_delay);
             using (var db = new Models.UnderBingoEntities())
             {
                 var list = await db.BINSIGNDs.Take(_count).ToListAsync();
@@ -57,8 +63,8 @@ namespace AsyncLab.WebApp.Controllers
             stopwatch.Start();
             using (var db = new Models.UnderBingoEntities())
             {
-           //     System.Threading.Thread.Sleep(_delay);
-                var list =  db.BINSIGNDs.Take(_count).ToList();
+                //     System.Threading.Thread.Sleep(_delay);
+                var list = db.BINSIGNDs.Take(_count).ToList();
                 stopwatch.Stop();
                 var v = stopwatch.ElapsedMilliseconds;
                 _DelayCount += 1;
