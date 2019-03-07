@@ -14,13 +14,19 @@ namespace AsyncLab.WebApp.Controllers
         static int _DelayCount = 0;
         public async Task<ActionResult> Index()
         {
-            using (var db = new Models.UnderBingoEntities())
-            {
-                await Task.Delay(5000);
-                ViewBag.Title = "PRD";
-                var list = await db.BINSIGNDs.Take(300).ToListAsync();
-                ViewBag.Message = $"_DelayAsyncCount : {_DelayAsyncCount}<br>_DelayCount : {_DelayCount},List:{list.Count}";
-            }
+            _DelayCount += 1;
+            await Task.Delay(5000);
+            ViewBag.Title = "STA";
+            ViewBag.Message = $"_DelayAsyncCount : {_DelayAsyncCount}<br>_DelayCount : {_DelayCount}<br>";
+            ViewBag.Message += $"{Request.PhysicalPath}";
+            //using (var db = new Models.UnderBingoEntities())
+            //{
+            //    await Task.Delay(5000);
+            //    ViewBag.Title = "STA";
+            //    var list = await db.BINSIGNDs.Take(300).ToListAsync();
+            //    ViewBag.Message = $"_DelayAsyncCount : {_DelayAsyncCount}<br>_DelayCount : {_DelayCount},List:{list.Count}<br>";
+            //    ViewBag.Message += $"{Request.PhysicalPath}";
+            //}
             return View();
         }
 
